@@ -1,0 +1,54 @@
+body{
+  background: darkgray;
+}
+
+.App {
+  text-align: center;
+  margin-top:60px;
+}
+
+.colorRed{
+  color:red;
+}
+
+.CounterWrapper{
+  width: 300px;
+  height: 400px;
+  border: 3px solid deepskyblue;
+  margin: 20px auto 0 auto;
+  border-radius: 5px;
+  font-size: 30px;
+  background: #1d1c1c;
+}
+
+.counter{
+  border: 1px solid #000000;
+  margin: 20px;
+  padding: 30px;
+  background: deepskyblue;
+  border-radius: 5px;
+}
+
+.Button{
+  background-color: deepskyblue;
+  border: none;
+  padding: 10px 30px;
+  margin: 10px 30px;
+  font-size:15px;
+  border-radius: 5px;
+}
+
+.Button:disabled{
+  background-color: #63d8ef;
+}
+
+.span{
+  color:white;
+  font-size: 14px;
+  margin: 20px 0;
+  display: block;
+}
+
+.title{
+  font-size: 45px;
+}
