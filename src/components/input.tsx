@@ -1,11 +1,17 @@
 import React from 'react';
 import '../App.css';
 
+type InputType = {
+    value: number
+    changeValue: (value:string) => void
+    error: boolean
+}
 
-function Input(props:any){
+
+function Input(props:InputType){
     return(
         <div>
-            <input type='number' className='inputRoot'/>
+            <input value={props.value} type='number' className={props.error ? 'inputRootError' : 'inputRoot'} onChange={(e)=> props.changeValue(e.currentTarget.value)}/>
         </div>
     )
 }

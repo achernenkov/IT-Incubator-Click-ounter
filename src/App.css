@@ -68,6 +68,7 @@ body{
   border-radius: 5px;
   padding: 5px;
   text-align: center;
+  outline: none;
 }
 
 .span-set{
@@ -75,4 +76,12 @@ body{
   font-size: 14px;
   margin: 5px 0;
   display: block;
+}
+
+.inputRootError{
+  border: 3px solid red;
+  border-radius: 5px;
+  padding: 5px;
+  text-align: center;
+  outline: none;
 }

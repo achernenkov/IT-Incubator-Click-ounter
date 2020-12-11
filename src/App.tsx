@@ -10,9 +10,13 @@ function App() {
 
     let [state, setState] = useState<number>(0)
     let [style, setStyle] = useState<string>('')
+    let [error, setError] = useState<boolean>(false)
+    let [maxValue, setMaxValue] = useState<number>(0)
+    let [startValue, setStartValue] = useState<number>(0)
     // Функции
 
     let styles = ''
+    let errors = false
 
     const counterPlus = () => {
         let countPlus = state + 1
@@ -34,18 +38,50 @@ function App() {
         setState(countMinus)
     }
 
-    const counterFullPlus =  () => {
+    const counterFullPlus = () => {
         let styles = 'colorRed'
         setStyle(styles)
         setState(5)
     }
 
-    const counterFullMinus =  () => {
+    const counterFullMinus = () => {
         setStyle('')
         setState(0)
     }
 
-    const counterSetSetting = () =>{
+    const maxValueSet = (value: string) => {
+        let numberValue = Number(value)
+        if (numberValue < 0) {
+            setMaxValue(0)
+            errors = true
+            setError(errors)
+        }else{
+            errors = false
+            setError(errors)
+            setMaxValue(numberValue)
+        }
+    }
+
+    const startValueSet = (value: string) => {
+        debugger
+        let numberValue = Number(value)
+        if (numberValue < 0) {
+            setStartValue(0)
+            errors = true
+            setError(errors)
+        }else if(startValue+1 === maxValue){
+            errors = true
+            setError(errors)
+            setStartValue(maxValue-1)
+        }
+        else{
+            errors = false
+            setError(errors)
+            setStartValue(numberValue)
+        }
+    }
+
+    const counterSetSetting = () => {
 
     }
 
@@ -82,10 +118,10 @@ function App() {
             </div>
             <div className='SetBlock'>
                 <span className='span-set'>Max Value</span>
-                <Input/>
+                <Input value={maxValue} changeValue={maxValueSet} error={error}/>
                 <span className='span-set'>Start Value</span>
-                <Input/>
-                <Button title='Set' counter={counterSetSetting} />
+                <Input value={startValue} changeValue={startValueSet} error={error}/>
+                <Button title='Set' counter={counterSetSetting}/>
             </div>
         </div>
     );
