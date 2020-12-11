@@ -52,3 +52,27 @@ body{
 .title{
   font-size: 45px;
 }
+
+.SetBlock{
+  width: 300px;
+  height: 200px;
+  border: 3px solid deepskyblue;
+  margin: 5px auto 0 auto;
+  border-radius: 5px;
+  font-size: 20px;
+  background: #1d1c1c;
+}
+
+.inputRoot{
+  border: 3px solid deepskyblue;
+  border-radius: 5px;
+  padding: 5px;
+  text-align: center;
+}
+
+.span-set{
+  color:white;
+  font-size: 14px;
+  margin: 5px 0;
+  display: block;
+}

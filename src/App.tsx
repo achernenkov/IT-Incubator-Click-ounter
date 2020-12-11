@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Counter from "./components/counter";
 import Button from "./components/button";
+import Input from "./components/input";
 
 
 function App() {
@@ -44,6 +45,10 @@ function App() {
         setState(0)
     }
 
+    const counterSetSetting = () =>{
+
+    }
+
     return (
         <div className="App">
 
@@ -74,6 +79,13 @@ function App() {
                         states={state}
                     />
                 </div>
+            </div>
+            <div className='SetBlock'>
+                <span className='span-set'>Max Value</span>
+                <Input/>
+                <span className='span-set'>Start Value</span>
+                <Input/>
+                <Button title='Set' counter={counterSetSetting} />
             </div>
         </div>
     );
