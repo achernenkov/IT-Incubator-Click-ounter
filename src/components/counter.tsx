@@ -1,15 +1,18 @@
 import React from 'react';
-import '../App.css';
+import Display from "./display";
+import Button from "./button";
 
-type CounterTypeProps = {
-    states: number
-    styles: string
-}
 
-function Counter(props:CounterTypeProps){
-    return(
-        <div className='counter'>
-            <span className={props.styles}>{props.states}</span>
+const Counter: React.FC<any> = () => {
+    return (
+        <div className='CounterWrapper'>
+            <Display/>
+            <div className="buttonBlock">
+                <Button/>
+                <Button/>
+                <Button/>
+                <Button/>
+            </div>
         </div>
     )
 }
