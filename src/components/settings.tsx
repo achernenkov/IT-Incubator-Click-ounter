@@ -1,16 +1,19 @@
 import React from 'react';
 import Input from "./input";
 import Button from "./button";
+import {NavLink} from "react-router-dom";
 
 
 const Setting: React.FC<any> = () => {
-    return(
+    return (
         <div className='SetBlock'>
             <span className='span-set'>Max Value</span>
             <Input/>
             <span className='span-set'>Start Value</span>
             <Input/>
-            <Button/>
+            <div>
+                <NavLink className='Button-Link-Set' to='/'>SET</NavLink>
+            </div>
         </div>
     )
 }
