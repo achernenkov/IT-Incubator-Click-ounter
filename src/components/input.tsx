@@ -6,7 +6,7 @@ import '../App.css';
 const Input: React.FC<any> = () => {
     return(
         <div>
-            <input/>
+            <input className='inputRoot' type='number'/>
         </div>
     )
 }
