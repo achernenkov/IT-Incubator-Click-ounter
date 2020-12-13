@@ -4,6 +4,7 @@ import '../App.css';
 type InputType = {
     value: number
     setValue: (value:number) => void
+    error:boolean
 }
 
 const Input: React.FC<InputType> = (props) => {
@@ -13,9 +14,11 @@ const Input: React.FC<InputType> = (props) => {
         props.setValue(value)
     }
 
+    const error = props.error
+
     return(
         <div>
-            <input value={props.value} onChange={setValue} className='inputRoot' type='number'/>
+            <input value={props.value} onChange={setValue} className={error ? 'inputRootError' : 'inputRoot'} type='number'/>
         </div>
     )
 }

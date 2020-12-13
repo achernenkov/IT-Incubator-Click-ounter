@@ -41,6 +41,11 @@ function App() {
         setStartNumber(value)
     }
 
+    // Error and Disabled
+
+    let [disabled, setDisabled] = useState<boolean>(false)
+    let [error, setError] = useState<boolean>(false)
+
     return (
         <BrowserRouter>
             <div className="App">
@@ -54,6 +59,8 @@ function App() {
                     startNumber={startNumber}
                     setMaxValue={setMaxValue}
                     setStartValue={setStartValue}
+                    disabled={disabled}
+                    error={error}
                 />} />
             </div>
         </BrowserRouter>);

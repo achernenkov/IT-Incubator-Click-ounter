@@ -4,12 +4,13 @@ import '../App.css';
 
     type ButtonType = {
         title: string
+        disabled?:boolean
     }
 
 const Button: React.FC<ButtonType> = (props) => {
     return(
 
-            <button className='Button'>{props.title}</button>
+            <button disabled={props.disabled} className='Button'>{props.title}</button>
     )
 }
 

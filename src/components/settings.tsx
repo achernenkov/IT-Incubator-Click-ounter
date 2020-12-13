@@ -9,6 +9,8 @@ import {NavLink} from "react-router-dom";
         startNumber:number
         setMaxValue: (value:number) => void
         setStartValue: (value:number) => void
+        disabled:boolean
+        error: boolean
     }
 
 
@@ -19,14 +21,16 @@ const Setting: React.FC<SettingsType> = (props) => {
             <Input
                 value={props.maxNumber}
                 setValue={props.setMaxValue}
+                error={props.error}
             />
             <span className='span-set'>Start Value</span>
             <Input
                 value={props.startNumber}
                 setValue={props.setStartValue}
+                error={props.error}
             />
             <div>
-                <NavLink to='/'><Button title={props.buttonTitle}/></NavLink>
+                <NavLink to='/'><Button title={props.buttonTitle} disabled={props.disabled}/></NavLink>
             </div>
         </div>
     )
