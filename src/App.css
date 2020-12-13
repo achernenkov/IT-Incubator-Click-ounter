@@ -96,3 +96,12 @@ body{
   color:black;
   text-decoration: none;
 }
+
+.counterError{
+  border: 1px solid #000000;
+  margin: 20px;
+  padding: 30px;
+  background: deepskyblue;
+  border-radius: 5px;
+  color: red;
+}

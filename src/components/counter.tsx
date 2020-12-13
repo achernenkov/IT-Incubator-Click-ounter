@@ -15,12 +15,13 @@ import {ButtonTitleType} from "../App";
         dec: () => void
         fullInc: () => void
         fullDec: () => void
+        errorCounter: boolean
     }
 
 const Counter: React.FC<CounterType> = (props) => {
     return (
         <div className='CounterWrapper'>
-            <Display state={props.state}/>
+            <Display state={props.state} error={props.errorCounter}/>
             <div className="buttonBlock">
                 <Button title={props.buttonTitle.inc} disabled={props.disabledInc} function={props.inc}/>
                 <Button title={props.buttonTitle.dec} disabled={props.disabledDec} function={props.dec}/>

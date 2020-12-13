@@ -58,6 +58,7 @@ function App() {
     let [disabledInc, setDisabledInc] = useState<boolean>(false)
     let [disabledDec, setDisabledDec] = useState<boolean>(false)
     let [error, setError] = useState<boolean>(false)
+    let [errorCounter, setErrorCounter] = useState<boolean>(false)
 
     // Logic
 
@@ -88,6 +89,7 @@ function App() {
             result = result + 1
             if(result === maxNumber){
                 setDisabledInc(true)
+                setErrorCounter(true)
                 setState(result)
             }else {
                 setDisabledInc(false)
@@ -107,6 +109,7 @@ function App() {
             }else {
                 setDisabledInc(false)
                 setDisabledDec(false)
+                setErrorCounter(false)
                 setState(result)
             }
         }
@@ -116,13 +119,43 @@ function App() {
             setState(maxNumber)
             setDisabledInc(true)
             setDisabledDec(false)
+            setErrorCounter(true)
     }
 
     let fullDec = () => {
         setState(startNumber)
         setDisabledInc(false)
         setDisabledDec(true)
+        setErrorCounter(false)
     }
+
+    // local storage
+    function saveState<T>(key: string, state: T) {
+        const stateAsString = JSON.stringify(state);
+        localStorage.setItem(key, stateAsString)
+    }
+
+
+    function restoreState<T>(key: string, defaultState: T) {
+        const stateAsString = localStorage.getItem(key);
+        if (stateAsString !== null) defaultState = JSON.parse(stateAsString) as T;
+        return defaultState;
+    }
+
+    const save = () => {
+        saveState<string>("max number",String(maxNumber));
+        saveState<string>("start number", String(startNumber));
+    };
+
+    function restoreMaxNumber():number{return restoreState("max number", Number(maxNumber))}
+    function restoreStartNumber():number{return restoreState("start number", Number(startNumber))}
+
+    const restore = () => {
+        const restoreMax = restoreState("max number", Number(maxNumber))
+        const restoreStartValue = restoreState("start number", Number(startNumber))
+        setMaxNumber(restoreMax)
+        setStartNumber(restoreStartValue)
+    };
 
     return (
         <BrowserRouter>
@@ -137,6 +170,7 @@ function App() {
                     dec={dec}
                     fullInc={fullInc}
                     fullDec={fullDec}
+                    errorCounter={errorCounter}
                 />} />
                 <Route path='/set' render={() => <Setting
                     buttonTitle={buttonTitle.set}
@@ -147,6 +181,7 @@ function App() {
                     disabled={disabledSeetting}
                     error={error}
                     setApply={setApply}
+                    saveLocal={save}
                 />} />
             </div>
         </BrowserRouter>);

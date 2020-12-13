@@ -7,6 +7,7 @@ import '../App.css';
         disabled?:boolean
         function?: () => void
         setApply?: () => void
+        saveLocal?: any
     }
 
 const Button: React.FC<ButtonType> = (props) => {
@@ -14,6 +15,7 @@ const Button: React.FC<ButtonType> = (props) => {
         let onClickFunction = () =>{
             props.function && props.function()
             props.setApply && props.setApply()
+            props.saveLocal && props.saveLocal()
         }
 
 
