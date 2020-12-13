@@ -33,18 +33,45 @@ function App() {
     let [maxNumber, setMaxNumber] = useState<number>(0)
     let [startNumber, setStartNumber] = useState<number>(0)
 
+
     const setMaxValue = (value:number) =>{
-        setMaxNumber(value)
+        setLogic(value, startNumber)
+        if(value < 0){
+            setMaxNumber(0)
+        }else{
+            setMaxNumber(value)
+        }
     }
 
     const setStartValue = (value:number) =>{
-        setStartNumber(value)
+        setLogic(maxNumber, value)
+        if(value < 0){
+            setStartNumber(0)
+        }else {
+            setStartNumber(value)
+        }
     }
 
     // Error and Disabled
 
     let [disabled, setDisabled] = useState<boolean>(false)
     let [error, setError] = useState<boolean>(false)
+
+    // Logic
+
+    function setLogic(maxNumber: number, startNumber:number ){
+        if(maxNumber <= 0 && startNumber <= 0){
+            setDisabled(true)
+            setError(true)
+        }else if (startNumber >= maxNumber){
+            setDisabled(true)
+            setError(true)
+        }else {
+            setDisabled(false)
+            setError(false)
+        }
+    }
+
 
     return (
         <BrowserRouter>
