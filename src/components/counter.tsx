@@ -8,15 +8,18 @@ import {ButtonTitleType} from "../App";
 
     type CounterType = {
         buttonTitle:ButtonTitleType
+        state: number | string
+        disabled:boolean
+        inc: () => void
     }
 
 const Counter: React.FC<CounterType> = (props) => {
     return (
         <div className='CounterWrapper'>
-            <Display/>
+            <Display state={props.state}/>
             <div className="buttonBlock">
-                <Button title={props.buttonTitle.inc}/>
-                <Button title={props.buttonTitle.reset}/>
+                <Button title={props.buttonTitle.inc} disabled={props.disabled} function={props.inc}/>
+                <Button title={props.buttonTitle.dec}/>
                 <Button title={props.buttonTitle.fullinc}/>
                 <Button title={props.buttonTitle.fullres}/>
                 <NavLink to='set'><Button title={props.buttonTitle.setting}/></NavLink>

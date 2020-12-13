@@ -8,7 +8,7 @@ import {Route, BrowserRouter} from 'react-router-dom';
 
 export type ButtonTitleType = {
     inc: string
-    reset: string
+    dec: string
     fullinc: string
     fullres: string
     set: string
@@ -22,7 +22,7 @@ function App() {
     // Название кнопок.
     const buttonTitle: ButtonTitleType = {
         inc: 'Inc',
-        reset: 'Reset',
+        dec: 'Dec',
         fullinc: 'Full-Inc',
         fullres: 'Full-Res',
         set: 'Set',
@@ -72,6 +72,27 @@ function App() {
         }
     }
 
+    // state
+
+    let [state, setState] = useState<number | string>('Setting please')
+
+    const setApply = () => {
+        setState(startNumber)
+    }
+
+    let inc = () => {
+        if (typeof state === 'number'){
+            let result = state
+            result = result + 1
+            if(result === maxNumber){
+                setDisabled(true)
+                setState(result)
+            }else {
+                setDisabled(false)
+                setState(result)
+            }
+        }
+    }
 
     return (
         <BrowserRouter>
@@ -79,6 +100,9 @@ function App() {
                 <span className='title'>Click counter</span>
                 <Route path='/' exact render={() => <Counter
                     buttonTitle={buttonTitle}
+                    state={state}
+                    disabled={disabled}
+                    inc={inc}
                 />} />
                 <Route path='/set' render={() => <Setting
                     buttonTitle={buttonTitle.set}
@@ -88,6 +112,7 @@ function App() {
                     setStartValue={setStartValue}
                     disabled={disabled}
                     error={error}
+                    setApply={setApply}
                 />} />
             </div>
         </BrowserRouter>);

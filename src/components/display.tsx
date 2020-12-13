@@ -1,11 +1,14 @@
 import React from 'react';
 import '../App.css';
 
+    type DisplayType = {
+        state: number | string
+    }
 
-const Display: React.FC<any> = () =>{
+const Display: React.FC<DisplayType> = (props) =>{
     return(
         <div className='counter'>
-            <span>1</span>
+            <span>{props.state}</span>
         </div>
     )
 }
