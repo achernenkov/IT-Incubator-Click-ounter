@@ -10,7 +10,7 @@ export type ButtonTitleType = {
     inc: string
     dec: string
     fullinc: string
-    fullres: string
+    fulldec: string
     set: string
     setting: string
 }
@@ -24,7 +24,7 @@ function App() {
         inc: 'Inc',
         dec: 'Dec',
         fullinc: 'Full-Inc',
-        fullres: 'Full-Res',
+        fulldec: 'Full-Dec',
         set: 'Set',
         setting: 'Setting'
     }
@@ -112,6 +112,18 @@ function App() {
         }
     }
 
+    let fullInc = () => {
+            setState(maxNumber)
+            setDisabledInc(true)
+            setDisabledDec(false)
+    }
+
+    let fullDec = () => {
+        setState(startNumber)
+        setDisabledInc(false)
+        setDisabledDec(true)
+    }
+
     return (
         <BrowserRouter>
             <div className="App">
@@ -123,6 +135,8 @@ function App() {
                     disabledDec={disabledDec}
                     inc={inc}
                     dec={dec}
+                    fullInc={fullInc}
+                    fullDec={fullDec}
                 />} />
                 <Route path='/set' render={() => <Setting
                     buttonTitle={buttonTitle.set}
