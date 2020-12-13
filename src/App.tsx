@@ -19,6 +19,7 @@ export type ButtonTitleType = {
 
 function App() {
 
+    // Название кнопок.
     const buttonTitle: ButtonTitleType = {
         inc: 'Inc',
         reset: 'Reset',
@@ -26,6 +27,18 @@ function App() {
         fullres: 'Full-Res',
         set: 'Set',
         setting: 'Setting'
+    }
+
+    // Стейте Max/Min
+    let [maxNumber, setMaxNumber] = useState<number>(0)
+    let [startNumber, setStartNumber] = useState<number>(0)
+
+    const setMaxValue = (value:number) =>{
+        setMaxNumber(value)
+    }
+
+    const setStartValue = (value:number) =>{
+        setStartNumber(value)
     }
 
     return (
@@ -37,6 +50,10 @@ function App() {
                 />} />
                 <Route path='/set' render={() => <Setting
                     buttonTitle={buttonTitle.set}
+                    maxNumber={maxNumber}
+                    startNumber={startNumber}
+                    setMaxValue={setMaxValue}
+                    setStartValue={setStartValue}
                 />} />
             </div>
         </BrowserRouter>);
