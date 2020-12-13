@@ -2,10 +2,14 @@ import React from 'react';
 import '../App.css';
 
 
-const Button: React.FC<any> = () => {
+    type ButtonType = {
+        title: string
+    }
+
+const Button: React.FC<ButtonType> = (props) => {
     return(
 
-            <button className='Button'>Name</button>
+            <button className='Button'>{props.title}</button>
     )
 }
 
