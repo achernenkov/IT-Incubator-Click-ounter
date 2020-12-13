@@ -54,20 +54,22 @@ function App() {
 
     // Error and Disabled
 
-    let [disabled, setDisabled] = useState<boolean>(false)
+    let [disabledSeetting, setDisabledSeetting] = useState<boolean>(false)
+    let [disabledInc, setDisabledInc] = useState<boolean>(false)
+    let [disabledDec, setDisabledDec] = useState<boolean>(false)
     let [error, setError] = useState<boolean>(false)
 
     // Logic
 
     function setLogic(maxNumber: number, startNumber:number ){
         if(maxNumber <= 0 && startNumber <= 0){
-            setDisabled(true)
+            setDisabledSeetting(true)
             setError(true)
         }else if (startNumber >= maxNumber){
-            setDisabled(true)
+            setDisabledSeetting(true)
             setError(true)
         }else {
-            setDisabled(false)
+            setDisabledSeetting(false)
             setError(false)
         }
     }
@@ -85,10 +87,26 @@ function App() {
             let result = state
             result = result + 1
             if(result === maxNumber){
-                setDisabled(true)
+                setDisabledInc(true)
                 setState(result)
             }else {
-                setDisabled(false)
+                setDisabledInc(false)
+                setDisabledDec(false)
+                setState(result)
+            }
+        }
+    }
+
+    let dec = () => {
+        if (typeof state === 'number'){
+            let result = state
+            result = result - 1
+            if(result === startNumber){
+                setDisabledDec(true)
+                setState(result)
+            }else {
+                setDisabledInc(false)
+                setDisabledDec(false)
                 setState(result)
             }
         }
@@ -101,8 +119,10 @@ function App() {
                 <Route path='/' exact render={() => <Counter
                     buttonTitle={buttonTitle}
                     state={state}
-                    disabled={disabled}
+                    disabledInc={disabledInc}
+                    disabledDec={disabledDec}
                     inc={inc}
+                    dec={dec}
                 />} />
                 <Route path='/set' render={() => <Setting
                     buttonTitle={buttonTitle.set}
@@ -110,7 +130,7 @@ function App() {
                     startNumber={startNumber}
                     setMaxValue={setMaxValue}
                     setStartValue={setStartValue}
-                    disabled={disabled}
+                    disabled={disabledSeetting}
                     error={error}
                     setApply={setApply}
                 />} />
