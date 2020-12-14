@@ -80,10 +80,12 @@ function App() {
     let [state, setState] = useState<number | string>('Setting please')
 
     const setApply = () => {
+        debugger
         setState(startNumber)
         setDisabledDec(true)
         setDisabledInc(false)
         saveLocalState(maxNumber,startNumber)
+        setErrorCounter(false)
     }
 
     let inc = () => {
