@@ -30,8 +30,8 @@ function App() {
     }
 
     // Стейте Max/Min
-    let [maxNumber, setMaxNumber] = useState<number>(0)
-    let [startNumber, setStartNumber] = useState<number>(0)
+    let [maxNumber, setMaxNumber] = useState<number>(restoreState().max)
+    let [startNumber, setStartNumber] = useState<number>(restoreState().min)
 
 
     const setMaxValue = (value:number) =>{
@@ -81,10 +81,14 @@ function App() {
 
     const setApply = () => {
         setState(startNumber)
+        setDisabledDec(true)
+        setDisabledInc(false)
+        saveLocalState(maxNumber,startNumber)
     }
 
     let inc = () => {
         if (typeof state === 'number'){
+            setDisabledDec(false)
             let result = state
             result = result + 1
             if(result === maxNumber){
@@ -93,7 +97,6 @@ function App() {
                 setState(result)
             }else {
                 setDisabledInc(false)
-                setDisabledDec(false)
                 setState(result)
             }
         }
@@ -101,15 +104,19 @@ function App() {
 
     let dec = () => {
         if (typeof state === 'number'){
+
+            setDisabledInc(false)
+            setErrorCounter(false)
+
             let result = state
             result = result - 1
+
             if(result === startNumber){
                 setDisabledDec(true)
                 setState(result)
-            }else {
-                setDisabledInc(false)
+            }
+            else {
                 setDisabledDec(false)
-                setErrorCounter(false)
                 setState(result)
             }
         }
@@ -130,38 +137,25 @@ function App() {
     }
 
     // local storage
-    function saveState<T>(key: string, state: T) {
-        const stateAsString = JSON.stringify(state);
-        localStorage.setItem(key, stateAsString)
+    function saveLocalState(maxNumber: number, startNumber: number) {
+        let obj = {
+            'max': maxNumber,
+            'min': startNumber
+        }
+        localStorage.setItem('counter', JSON.stringify(obj));
     }
 
-
-    function restoreState<T>(key: string, defaultState: T) {
-        const stateAsString = localStorage.getItem(key);
-        if (stateAsString !== null) defaultState = JSON.parse(stateAsString) as T;
-        return defaultState;
+    function restoreState(){
+        let obj = localStorage.getItem('counter')
+        return obj ? JSON.parse(obj) : {'max': null, 'min': null}
     }
 
-    const save = () => {
-        saveState<string>("max number",String(maxNumber));
-        saveState<string>("start number", String(startNumber));
-    };
-
-    function restoreMaxNumber():number{return restoreState("max number", Number(maxNumber))}
-    function restoreStartNumber():number{return restoreState("start number", Number(startNumber))}
-
-    const restore = () => {
-        const restoreMax = restoreState("max number", Number(maxNumber))
-        const restoreStartValue = restoreState("start number", Number(startNumber))
-        setMaxNumber(restoreMax)
-        setStartNumber(restoreStartValue)
-    };
 
     return (
         <BrowserRouter>
             <div className="App">
-                <span className='title'>Click counter</span>
-                <Route path='/' exact render={() => <Counter
+                <span className='title'>Click counter V2 </span>
+                <Route exact path="/" render={() => <Counter
                     buttonTitle={buttonTitle}
                     state={state}
                     disabledInc={disabledInc}
@@ -181,7 +175,6 @@ function App() {
                     disabled={disabledSeetting}
                     error={error}
                     setApply={setApply}
-                    saveLocal={save}
                 />} />
             </div>
         </BrowserRouter>);

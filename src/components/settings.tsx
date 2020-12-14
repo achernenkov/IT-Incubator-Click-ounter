@@ -12,7 +12,6 @@ import {NavLink} from "react-router-dom";
         disabled:boolean
         error: boolean
         setApply: () => void
-        saveLocal: () => void
     }
 
 
@@ -32,7 +31,7 @@ const Setting: React.FC<SettingsType> = (props) => {
                 error={props.error}
             />
             <div>
-                <NavLink to='/'><Button title={props.buttonTitle} disabled={props.disabled} setApply={props.setApply} saveLocal={props.saveLocal()}/></NavLink>
+                <NavLink to='/'><Button title={props.buttonTitle} disabled={props.disabled} setApply={props.setApply}/></NavLink>
             </div>
         </div>
     )
