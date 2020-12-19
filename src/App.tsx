@@ -15,7 +15,10 @@ export type ButtonTitleType = {
     setting: string
 }
 
-
+export function restoreState(){
+    let obj = localStorage.getItem('counter')
+    return obj ? JSON.parse(obj) : {'max': null, 'min': null}
+}
 
 function App() {
 
@@ -80,7 +83,6 @@ function App() {
     let [state, setState] = useState<number | string>('Setting please')
 
     const setApply = () => {
-        debugger
         setState(startNumber)
         setDisabledDec(true)
         setDisabledInc(false)
@@ -147,10 +149,6 @@ function App() {
         localStorage.setItem('counter', JSON.stringify(obj));
     }
 
-    function restoreState(){
-        let obj = localStorage.getItem('counter')
-        return obj ? JSON.parse(obj) : {'max': null, 'min': null}
-    }
 
 
     return (
