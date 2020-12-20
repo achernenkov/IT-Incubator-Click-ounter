@@ -9,7 +9,7 @@ type ButtonTitleType = {
     setting: string
 }
 
-type StateType = {
+export type StateType = {
     buttonTitle: ButtonTitleType
     maxNumber: number
     startNumber: number
