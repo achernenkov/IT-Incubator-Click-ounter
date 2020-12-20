@@ -22,7 +22,7 @@ export type StateType = {
 }
 
 let initialState: StateType = {
-    buttonTitle:{
+    buttonTitle: {
         inc: 'Inc',
         dec: 'Dec',
         fullinc: 'Full-Inc',
@@ -32,55 +32,83 @@ let initialState: StateType = {
     },
     maxNumber: 0,
     startNumber: 0,
-    disabledSeetting: false,
-    disabledInc: false,
-    disabledDec: false,
+    disabledSeetting: true,
+    disabledInc: true,
+    disabledDec: true,
     error: false,
     errorCounter: false,
     counterState: 'Setting please'
 }
 
-const counterReducer = ( state: StateType = initialState, action: TotalTypeAC) => {
-    switch (action.type){
-        case 'SET-MAX-VALUE':
-            return {...state, ...action.payload}
-        case 'SET-START-VALUE':
-            return {...state, ...action.payload}
-        case "SET-INC-VALUE":{
+const counterReducer = (state: StateType = initialState, action: TotalTypeAC) => {
+    switch (action.type) {
+        case 'SET-MAX-VALUE': {
+
+            let disabledSeetting
+            let error
+
+            if (action.payload.maxNumber > state.startNumber) {
+                disabledSeetting = false
+                error = false
+            } else {
+                disabledSeetting = true
+                error = true
+            }
+            return {...state, ...action.payload, disabledSeetting, error}
+        }
+        case 'SET-START-VALUE': {
+            let disabledSeetting
+            let error
+            if (action.payload.startNumber >= state.maxNumber) {
+                disabledSeetting = true
+                error = true
+            } else {
+                disabledSeetting = false
+                error = false
+            }
+
+            return {...state, ...action.payload, disabledSeetting, error}
+        }
+        case
+        "SET-INC-VALUE" : {
             let newValue
-            if(typeof state.counterState === 'string' ){
+            if (typeof state.counterState === 'string') {
                 newValue = 1
-            }else {
+            } else {
                 newValue = state.counterState + 1
             }
-            return {...state, counterState: newValue }
+            return {...state, counterState: newValue}
         }
-        case "SET-DEC-VALUE":{
+        case
+        "SET-DEC-VALUE" : {
             {
                 let newValue
-                if(typeof state.counterState === 'string' ){
+                if (typeof state.counterState === 'string') {
                     newValue = 0
-                }else {
+                } else {
                     newValue = state.counterState - 1
                 }
-                return {...state, counterState: newValue }
+                return {...state, counterState: newValue}
             }
         }
-        case "SET-FULL-INC-VALUE":{
+        case
+        "SET-FULL-INC-VALUE" : {
             let newValue = state.maxNumber
             return {...state, counterState: newValue}
         }
-        case "SET-FULL-DEC-VALUE":{
+        case
+        "SET-FULL-DEC-VALUE" : {
             {
                 let newValue = state.startNumber
                 return {...state, counterState: newValue}
             }
         }
-        case "SET-APPLY":{
+        case
+        "SET-APPLY" : {
             return {...state}
         }
         default:
-           return state
+            return state
     }
 }
 
@@ -101,6 +129,7 @@ type SetMaxValueAction = {
     type: 'SET-MAX-VALUE'
     payload: {
         maxNumber: number
+        disabledSeetting: boolean
     }
 }
 
@@ -108,6 +137,7 @@ type SetStartValueAction = {
     type: 'SET-START-VALUE'
     payload: {
         startNumber: number
+        disabledSeetting: boolean
     }
 }
 

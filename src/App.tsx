@@ -55,7 +55,8 @@ function App() {
             {
                 type: 'SET-MAX-VALUE',
                 payload: {
-                    maxNumber: value
+                    maxNumber: value,
+                    disabledSeetting: false
                 }
             }
         )
@@ -73,7 +74,8 @@ function App() {
             {
                 type: 'SET-START-VALUE',
                 payload: {
-                    startNumber: value
+                    startNumber: value,
+                    disabledSeetting: false
                 }
             }
         )

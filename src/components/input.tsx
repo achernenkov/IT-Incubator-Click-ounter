@@ -18,7 +18,7 @@ const Input: React.FC<InputType> = (props) => {
 
     return(
         <div>
-            <input value={props.value} onChange={setValue} className={error ? 'inputRootError' : 'inputRoot'} type='number'/>
+            <input value={props.value} onChange={setValue} min={0} className={error ? 'inputRootError' : 'inputRoot'} type='number'/>
         </div>
     )
 }
