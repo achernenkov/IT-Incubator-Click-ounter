@@ -30,8 +30,8 @@ let initialState: StateType = {
         set: 'Set',
         setting: 'Setting'
     },
-    maxNumber: restoreState().max,
-    startNumber: restoreState().min,
+    maxNumber: 0,
+    startNumber: 0,
     disabledSeetting: false,
     disabledInc: false,
     disabledDec: false,
@@ -44,6 +44,41 @@ const counterReducer = ( state: StateType = initialState, action: TotalTypeAC) =
     switch (action.type){
         case 'SET-MAX-VALUE':
             return {...state, ...action.payload}
+        case 'SET-START-VALUE':
+            return {...state, ...action.payload}
+        case "SET-INC-VALUE":{
+            let newValue
+            if(typeof state.counterState === 'string' ){
+                newValue = 1
+            }else {
+                newValue = state.counterState + 1
+            }
+            return {...state, counterState: newValue }
+        }
+        case "SET-DEC-VALUE":{
+            {
+                let newValue
+                if(typeof state.counterState === 'string' ){
+                    newValue = 0
+                }else {
+                    newValue = state.counterState - 1
+                }
+                return {...state, counterState: newValue }
+            }
+        }
+        case "SET-FULL-INC-VALUE":{
+            let newValue = state.maxNumber
+            return {...state, counterState: newValue}
+        }
+        case "SET-FULL-DEC-VALUE":{
+            {
+                let newValue = state.startNumber
+                return {...state, counterState: newValue}
+            }
+        }
+        case "SET-APPLY":{
+            return {...state}
+        }
         default:
            return state
     }
@@ -54,11 +89,45 @@ export default counterReducer
 
 /// action type
 
-type TotalTypeAC = SetMaxValueAC
+type TotalTypeAC = SetMaxValueAction
+    | SetStartValueAction
+    | SetIncValueAction
+    | SetDecValueAction
+    | SetFullIncValueAction
+    | SetFullDecValueAction
+    | SetApplyAction
 
-type SetMaxValueAC = {
+type SetMaxValueAction = {
     type: 'SET-MAX-VALUE'
     payload: {
         maxNumber: number
     }
+}
+
+type SetStartValueAction = {
+    type: 'SET-START-VALUE'
+    payload: {
+        startNumber: number
+    }
+}
+
+type SetIncValueAction = {
+    type: 'SET-INC-VALUE'
+}
+
+type SetDecValueAction = {
+    type: 'SET-DEC-VALUE'
+}
+
+
+type SetFullIncValueAction = {
+    type: 'SET-FULL-INC-VALUE'
+}
+
+type SetFullDecValueAction = {
+    type: 'SET-FULL-DEC-VALUE'
+}
+
+type SetApplyAction = {
+    type: 'SET-APPLY'
 }

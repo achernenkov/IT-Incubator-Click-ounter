@@ -51,6 +51,14 @@ function App() {
 
 
     const setMaxValue = (value: number) => {
+        dispatch(
+            {
+                type: 'SET-MAX-VALUE',
+                payload: {
+                    maxNumber: value
+                }
+            }
+        )
 
         // setLogic(value, startNumber)
         // if (value < 0) {
@@ -61,6 +69,15 @@ function App() {
     }
 
     const setStartValue = (value: number) => {
+        dispatch(
+            {
+                type: 'SET-START-VALUE',
+                payload: {
+                    startNumber: value
+                }
+            }
+        )
+
         // setLogic(maxNumber, value)
         // if (value < 0) {
         //     setStartNumber(0)
@@ -97,6 +114,8 @@ function App() {
     // let [state, setState] = useState<number | string>('Setting please')
 
     const setApply = () => {
+
+
         // setState(startNumber)
         // setDisabledDec(true)
         // setDisabledInc(false)
@@ -105,6 +124,11 @@ function App() {
     }
 
     let inc = () => {
+        dispatch({
+            type: "SET-INC-VALUE"
+        })
+
+
         // if (typeof state === 'number') {
         //     setDisabledDec(false)
         //     let result = state
@@ -121,6 +145,11 @@ function App() {
     }
 
     let dec = () => {
+        dispatch({
+            type: "SET-DEC-VALUE"
+        })
+
+
         // if (typeof state === 'number') {
         //
         //     setDisabledInc(false)
@@ -140,6 +169,11 @@ function App() {
     }
 
     let fullInc = () => {
+
+        dispatch({
+            type: "SET-FULL-INC-VALUE"
+        })
+
         // setState(maxNumber)
         // setDisabledInc(true)
         // setDisabledDec(false)
@@ -147,20 +181,25 @@ function App() {
     }
 
     let fullDec = () => {
+
+        dispatch({
+            type: "SET-FULL-DEC-VALUE"
+        })
+
         // setState(startNumber)
         // setDisabledInc(false)
         // setDisabledDec(true)
         // setErrorCounter(false)
     }
 
-    // local storage
-    function saveLocalState(maxNumber: number, startNumber: number) {
-        let obj = {
-            'max': maxNumber,
-            'min': startNumber
-        }
-        localStorage.setItem('counter', JSON.stringify(obj));
-    }
+    // // local storage
+    // function saveLocalState(maxNumber: number, startNumber: number) {
+    //     let obj = {
+    //         'max': maxNumber,
+    //         'min': startNumber
+    //     }
+    //     localStorage.setItem('counter', JSON.stringify(obj));
+    // }
 
 
     return (
