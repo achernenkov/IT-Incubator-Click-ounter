@@ -71,24 +71,34 @@ const counterReducer = (state: StateType = initialState, action: TotalTypeAC) =>
         }
         case
         "SET-INC-VALUE" : {
-            let newValue
+            let counterState
             if (typeof state.counterState === 'string') {
-                newValue = 1
+                counterState = 1
             } else {
-                newValue = state.counterState + 1
+                if(state.counterState === state.maxNumber){
+                    counterState = state.maxNumber
+                }else {
+                    counterState = state.counterState + 1
+                }
             }
-            return {...state, counterState: newValue}
+            return {...state, counterState}
         }
         case
         "SET-DEC-VALUE" : {
             {
-                let newValue
+                let counterState
+                let disabledDec
+
                 if (typeof state.counterState === 'string') {
-                    newValue = 0
+                    counterState = 0
                 } else {
-                    newValue = state.counterState - 1
+                    if (state.counterState === state.startNumber){
+                        counterState = state.startNumber
+                    }else {
+                        counterState = state.counterState - 1
+                    }
                 }
-                return {...state, counterState: newValue}
+                return {...state, counterState}
             }
         }
         case
@@ -105,7 +115,10 @@ const counterReducer = (state: StateType = initialState, action: TotalTypeAC) =>
         }
         case
         "SET-APPLY" : {
-            return {...state}
+            let disabledInc = false
+            let disabledDec = false
+            let counterState = state.startNumber
+            return {...state, counterState , disabledInc, disabledDec }
         }
         default:
             return state

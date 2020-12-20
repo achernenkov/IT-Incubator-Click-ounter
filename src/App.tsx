@@ -117,6 +117,10 @@ function App() {
 
     const setApply = () => {
 
+        dispatch({
+            type: 'SET-APPLY'
+        })
+
 
         // setState(startNumber)
         // setDisabledDec(true)
