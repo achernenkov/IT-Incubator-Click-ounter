@@ -3,8 +3,12 @@ import './App.css';
 import Setting from "./components/settings";
 import Counter from "./components/counter";
 import {Route, BrowserRouter} from 'react-router-dom';
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "./redux/store";
+
 
 // disabled and error
+
 
 export type ButtonTitleType = {
     inc: string
@@ -22,15 +26,16 @@ export function restoreState(){
 
 function App() {
 
-    // Название кнопок.
-    const buttonTitle: ButtonTitleType = {
-        inc: 'Inc',
-        dec: 'Dec',
-        fullinc: 'Full-Inc',
-        fulldec: 'Full-Dec',
-        set: 'Set',
-        setting: 'Setting'
-    }
+///////////////// new logic //////////////////////////
+
+
+
+    const dispatch = useDispatch()
+    const buttonTitle = useSelector<AppRootStateType, ButtonTitleType>(state => state.counsterState.buttonTitle )
+
+///////////////// end new logic ///////////////////////
+
+
 
     // Стейте Max/Min
     let [maxNumber, setMaxNumber] = useState<number>(restoreState().max)

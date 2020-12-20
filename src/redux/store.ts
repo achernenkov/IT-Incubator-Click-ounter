@@ -3,7 +3,8 @@ import counterReducer from "./reducer";
 
 
 const rootReducer = combineReducers({
-    state: counterReducer
+    counsterState: counterReducer
 })
 
 export const store = createStore(rootReducer);
+export type AppRootStateType = ReturnType<typeof rootReducer>

@@ -9,7 +9,7 @@ type ButtonTitleType = {
     setting: string
 }
 
-type stateType = {
+type StateType = {
     buttonTitle: ButtonTitleType
     maxNumber: number
     startNumber: number
@@ -21,7 +21,7 @@ type stateType = {
     counterState: string | number
 }
 
-let initialState = {
+let initialState: StateType = {
     buttonTitle:{
         inc: 'Inc',
         dec: 'Dec',
@@ -37,14 +37,28 @@ let initialState = {
     disabledDec: false,
     error: false,
     errorCounter: false,
-    counterState: 'Setting please',
+    counterState: 'Setting please'
 }
 
-const counterReducer = ( state: stateType = initialState, action: any) => {
+const counterReducer = ( state: StateType = initialState, action: TotalTypeAC) => {
     switch (action.type){
+        case 'SET-MAX-VALUE':
+            return {...state, ...action.payload}
         default:
            return state
     }
 }
 
 export default counterReducer
+
+
+/// action type
+
+type TotalTypeAC = SetMaxValueAC
+
+type SetMaxValueAC = {
+    type: 'SET-MAX-VALUE'
+    payload: {
+        maxNumber: number
+    }
+}
