@@ -1,6 +1,4 @@
-import {restoreState} from "../App";
-
-type ButtonTitleType = {
+export type ButtonTitleType = {
     inc: string
     dec: string
     fullinc: string
@@ -74,6 +72,7 @@ const counterReducer = (state: StateType = initialState, action: TotalTypeAC) =>
             let counterState
             let disabledDec
             let disabledInc
+            let errorCounter
 
             if (typeof state.counterState === 'string') {
                 counterState = 1
@@ -83,12 +82,13 @@ const counterReducer = (state: StateType = initialState, action: TotalTypeAC) =>
                 }else {
                     if(state.counterState === state.maxNumber - 1 ){
                         disabledInc = true
+                        errorCounter = true
                     }
                     counterState = state.counterState + 1
                     disabledDec = false
                 }
             }
-            return {...state, counterState, disabledDec, disabledInc}
+            return {...state, counterState, disabledDec, disabledInc, errorCounter}
         }
         case
         "SET-DEC-VALUE" : {
@@ -96,6 +96,7 @@ const counterReducer = (state: StateType = initialState, action: TotalTypeAC) =>
                 let counterState
                 let disabledDec
                 let disabledInc
+                let errorCounter
 
                 if (typeof state.counterState === 'string') {
                     counterState = 0
@@ -107,10 +108,11 @@ const counterReducer = (state: StateType = initialState, action: TotalTypeAC) =>
                             disabledDec = true
                         }
                         disabledInc = false
+                        errorCounter = false
                         counterState = state.counterState - 1
                     }
                 }
-                return {...state, counterState, disabledDec, disabledInc}
+                return {...state, counterState, disabledDec, disabledInc, errorCounter}
             }
         }
         case
@@ -118,7 +120,8 @@ const counterReducer = (state: StateType = initialState, action: TotalTypeAC) =>
             let counterState = state.maxNumber
             let disabledDec = false
             let disabledInc = true
-            return {...state, counterState, disabledDec, disabledInc}
+            let errorCounter = true
+            return {...state, counterState, disabledDec, disabledInc, errorCounter}
         }
         case
         "SET-FULL-DEC-VALUE" : {
@@ -126,7 +129,8 @@ const counterReducer = (state: StateType = initialState, action: TotalTypeAC) =>
                 let counterState = state.startNumber
                 let disabledDec = true
                 let disabledInc = false
-                return {...state, counterState, disabledDec, disabledInc}
+                let errorCounter = false
+                return {...state, counterState, disabledDec, disabledInc, errorCounter}
             }
         }
         case

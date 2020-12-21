@@ -3,7 +3,7 @@ import Display from "./display";
 import Button from "./button";
 import {NavLink} from "react-router-dom";
 import './../App.css'
-import {ButtonTitleType} from "../App";
+import {ButtonTitleType} from "../redux/reducer";
 
 
     type CounterType = {
