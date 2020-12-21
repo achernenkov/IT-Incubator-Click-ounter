@@ -16,6 +16,7 @@ import {ButtonTitleType} from "../redux/reducer";
         fullInc: () => void
         fullDec: () => void
         errorCounter: boolean
+        settingClick: () => void
     }
 
 const Counter: React.FC<CounterType> = (props) => {
@@ -27,7 +28,7 @@ const Counter: React.FC<CounterType> = (props) => {
                 <Button title={props.buttonTitle.dec} disabled={props.disabledDec} function={props.dec}/>
                 <Button title={props.buttonTitle.fullinc} disabled={props.disabledInc} function={props.fullInc}/>
                 <Button title={props.buttonTitle.fulldec} disabled={props.disabledDec} function={props.fullDec}/>
-                <NavLink to='set'><Button title={props.buttonTitle.setting}/></NavLink>
+                <NavLink to='set'><Button title={props.buttonTitle.setting} function={props.settingClick}/></NavLink>
             </div>
         </div>
     )

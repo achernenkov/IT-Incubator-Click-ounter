@@ -52,6 +52,7 @@ const dispatch = useDispatch()
     const dec = () => {dispatch({type: "SET-DEC-VALUE"})}
     const fullInc = () => {dispatch({type: "SET-FULL-INC-VALUE"})}
     const fullDec = () => {dispatch({type: "SET-FULL-DEC-VALUE"})}
+    const settingClick = () => {dispatch({type: 'SETTING-CLICK'})}
 
     return (
         <BrowserRouter>
@@ -67,6 +68,7 @@ const dispatch = useDispatch()
                     fullInc={fullInc}
                     fullDec={fullDec}
                     errorCounter={errorCounter}
+                    settingClick={settingClick}
                 />}/>
                 <Route path='/set' render={() => <Setting
                     buttonTitle={buttonTitle.set}

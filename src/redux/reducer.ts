@@ -160,6 +160,14 @@ const counterReducer = (state: StateType = initialState, action: TotalTypeAC) =>
 
             return {...state, counterState , disabledInc, disabledDec }
         }
+        case "SETTING-CLICK":{
+            debugger
+            let disabledSeetting = false
+            if(state.maxNumber === null && state.startNumber === null){
+                disabledSeetting = true
+            }
+            return {...state, disabledSeetting }
+        }
         default:
             return state
     }
@@ -177,6 +185,7 @@ type TotalTypeAC = SetMaxValueAction
     | SetFullIncValueAction
     | SetFullDecValueAction
     | SetApplyAction
+    | SettingClickAction
 
 type SetMaxValueAction = {
     type: 'SET-MAX-VALUE'
@@ -202,7 +211,6 @@ type SetDecValueAction = {
     type: 'SET-DEC-VALUE'
 }
 
-
 type SetFullIncValueAction = {
     type: 'SET-FULL-INC-VALUE'
 }
@@ -213,4 +221,8 @@ type SetFullDecValueAction = {
 
 type SetApplyAction = {
     type: 'SET-APPLY'
+}
+
+type SettingClickAction = {
+    type: 'SETTING-CLICK'
 }
