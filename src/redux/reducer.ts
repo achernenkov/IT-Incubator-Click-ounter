@@ -72,22 +72,30 @@ const counterReducer = (state: StateType = initialState, action: TotalTypeAC) =>
         case
         "SET-INC-VALUE" : {
             let counterState
+            let disabledDec
+            let disabledInc
+
             if (typeof state.counterState === 'string') {
                 counterState = 1
             } else {
                 if(state.counterState === state.maxNumber){
                     counterState = state.maxNumber
                 }else {
+                    if(state.counterState === state.maxNumber - 1 ){
+                        disabledInc = true
+                    }
                     counterState = state.counterState + 1
+                    disabledDec = false
                 }
             }
-            return {...state, counterState}
+            return {...state, counterState, disabledDec, disabledInc}
         }
         case
         "SET-DEC-VALUE" : {
-            {
+            {   debugger
                 let counterState
                 let disabledDec
+                let disabledInc
 
                 if (typeof state.counterState === 'string') {
                     counterState = 0
@@ -95,28 +103,36 @@ const counterReducer = (state: StateType = initialState, action: TotalTypeAC) =>
                     if (state.counterState === state.startNumber){
                         counterState = state.startNumber
                     }else {
+                        if(state.counterState === state.startNumber + 1){
+                            disabledDec = true
+                        }
+                        disabledInc = false
                         counterState = state.counterState - 1
                     }
                 }
-                return {...state, counterState}
+                return {...state, counterState, disabledDec, disabledInc}
             }
         }
         case
         "SET-FULL-INC-VALUE" : {
-            let newValue = state.maxNumber
-            return {...state, counterState: newValue}
+            let counterState = state.maxNumber
+            let disabledDec = false
+            let disabledInc = true
+            return {...state, counterState, disabledDec, disabledInc}
         }
         case
         "SET-FULL-DEC-VALUE" : {
             {
-                let newValue = state.startNumber
-                return {...state, counterState: newValue}
+                let counterState = state.startNumber
+                let disabledDec = true
+                let disabledInc = false
+                return {...state, counterState, disabledDec, disabledInc}
             }
         }
         case
         "SET-APPLY" : {
             let disabledInc = false
-            let disabledDec = false
+            let disabledDec = true
             let counterState = state.startNumber
             return {...state, counterState , disabledInc, disabledDec }
         }
