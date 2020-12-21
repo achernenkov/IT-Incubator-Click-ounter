@@ -85,7 +85,7 @@ const counterReducer = (state: StateType = initialState, action: TotalTypeAC) =>
             return {...state, ...action.payload, disabledSeetting, error}
         }
         case
-        "SET-INC-VALUE" : {
+        "INC-VALUE" : {
             let counterState
             let disabledDec
             let disabledInc
@@ -108,7 +108,7 @@ const counterReducer = (state: StateType = initialState, action: TotalTypeAC) =>
             return {...state, counterState, disabledDec, disabledInc, errorCounter}
         }
         case
-        "SET-DEC-VALUE" : {
+        "DEC-VALUE" : {
             {   debugger
                 let counterState
                 let disabledDec
@@ -133,7 +133,7 @@ const counterReducer = (state: StateType = initialState, action: TotalTypeAC) =>
             }
         }
         case
-        "SET-FULL-INC-VALUE" : {
+        "FULL-INC-VALUE" : {
             let counterState = state.maxNumber
             let disabledDec = false
             let disabledInc = true
@@ -141,7 +141,7 @@ const counterReducer = (state: StateType = initialState, action: TotalTypeAC) =>
             return {...state, counterState, disabledDec, disabledInc, errorCounter}
         }
         case
-        "SET-FULL-DEC-VALUE" : {
+        "FULL-DEC-VALUE" : {
             {
                 let counterState = state.startNumber
                 let disabledDec = true
@@ -204,19 +204,19 @@ type SetStartValueAction = {
 }
 
 type SetIncValueAction = {
-    type: 'SET-INC-VALUE'
+    type: 'INC-VALUE'
 }
 
 type SetDecValueAction = {
-    type: 'SET-DEC-VALUE'
+    type: 'DEC-VALUE'
 }
 
 type SetFullIncValueAction = {
-    type: 'SET-FULL-INC-VALUE'
+    type: 'FULL-INC-VALUE'
 }
 
 type SetFullDecValueAction = {
-    type: 'SET-FULL-DEC-VALUE'
+    type: 'FULL-DEC-VALUE'
 }
 
 type SetApplyAction = {

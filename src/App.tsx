@@ -48,10 +48,10 @@ const dispatch = useDispatch()
     }
 
     const setApply = () => {dispatch({type: 'SET-APPLY'})}
-    const inc = () => {dispatch({type: "SET-INC-VALUE"})}
-    const dec = () => {dispatch({type: "SET-DEC-VALUE"})}
-    const fullInc = () => {dispatch({type: "SET-FULL-INC-VALUE"})}
-    const fullDec = () => {dispatch({type: "SET-FULL-DEC-VALUE"})}
+    const inc = () => {dispatch({type: "INC-VALUE"})}
+    const dec = () => {dispatch({type: "DEC-VALUE"})}
+    const fullInc = () => {dispatch({type: "FULL-INC-VALUE"})}
+    const fullDec = () => {dispatch({type: "FULL-DEC-VALUE"})}
     const settingClick = () => {dispatch({type: 'SETTING-CLICK'})}
 
     return (
