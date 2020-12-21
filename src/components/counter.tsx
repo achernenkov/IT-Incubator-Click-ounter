@@ -6,18 +6,18 @@ import './../App.css'
 import {ButtonTitleType} from "../redux/reducer";
 
 
-    type CounterType = {
-        buttonTitle:ButtonTitleType
-        state: number | string
-        disabledInc:boolean
-        disabledDec:boolean
-        inc: () => void
-        dec: () => void
-        fullInc: () => void
-        fullDec: () => void
-        errorCounter: boolean
-        settingClick: () => void
-    }
+type CounterType = {
+    buttonTitle: ButtonTitleType
+    state: number | string
+    disabledInc: boolean
+    disabledDec: boolean
+    inc: () => void
+    dec: () => void
+    fullInc: () => void
+    fullDec: () => void
+    errorCounter: boolean
+    settingClick: () => void
+}
 
 const Counter: React.FC<CounterType> = (props) => {
     return (

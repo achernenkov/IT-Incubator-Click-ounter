@@ -3,16 +3,16 @@ import Input from "./input";
 import Button from "./button";
 import {NavLink} from "react-router-dom";
 
-    type SettingsType = {
-        buttonTitle: string
-        maxNumber:number
-        startNumber:number
-        setMaxValue: (value:number) => void
-        setStartValue: (value:number) => void
-        disabled:boolean
-        error: boolean
-        setApply: () => void
-    }
+type SettingsType = {
+    buttonTitle: string
+    maxNumber: number
+    startNumber: number
+    setMaxValue: (value: number) => void
+    setStartValue: (value: number) => void
+    disabled: boolean
+    error: boolean
+    setApply: () => void
+}
 
 
 const Setting: React.FC<SettingsType> = (props) => {

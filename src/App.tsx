@@ -9,7 +9,7 @@ import {StateType} from "./redux/reducer";
 
 function App() {
 
-const dispatch = useDispatch()
+    const dispatch = useDispatch()
     const {
         maxNumber,
         startNumber,
@@ -28,8 +28,7 @@ const dispatch = useDispatch()
             {
                 type: 'SET-MAX-VALUE',
                 payload: {
-                    maxNumber: value,
-                    disabledSeetting: false
+                    maxNumber: value
                 }
             }
         )
@@ -40,19 +39,30 @@ const dispatch = useDispatch()
             {
                 type: 'SET-START-VALUE',
                 payload: {
-                    startNumber: value,
-                    disabledSeetting: false
+                    startNumber: value
                 }
             }
         )
     }
 
-    const setApply = () => {dispatch({type: 'SET-APPLY'})}
-    const inc = () => {dispatch({type: "INC-VALUE"})}
-    const dec = () => {dispatch({type: "DEC-VALUE"})}
-    const fullInc = () => {dispatch({type: "FULL-INC-VALUE"})}
-    const fullDec = () => {dispatch({type: "FULL-DEC-VALUE"})}
-    const settingClick = () => {dispatch({type: 'SETTING-CLICK'})}
+    const setApply = () => {
+        dispatch({type: 'SET-APPLY'})
+    }
+    const inc = () => {
+        dispatch({type: "INC-VALUE"})
+    }
+    const dec = () => {
+        dispatch({type: "DEC-VALUE"})
+    }
+    const fullInc = () => {
+        dispatch({type: "FULL-INC-VALUE"})
+    }
+    const fullDec = () => {
+        dispatch({type: "FULL-DEC-VALUE"})
+    }
+    const settingClick = () => {
+        dispatch({type: 'SETTING-CLICK'})
+    }
 
     return (
         <BrowserRouter>

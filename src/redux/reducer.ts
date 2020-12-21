@@ -12,7 +12,6 @@ const saveLocalState = (maxNumber: number, startNumber: number) => {
 }
 
 
-
 export type ButtonTitleType = {
     inc: string
     dec: string
@@ -54,7 +53,6 @@ let initialState: StateType = {
 }
 
 
-
 const counterReducer = (state: StateType = initialState, action: TotalTypeAC) => {
     switch (action.type) {
         case 'SET-MAX-VALUE': {
@@ -94,10 +92,10 @@ const counterReducer = (state: StateType = initialState, action: TotalTypeAC) =>
             if (typeof state.counterState === 'string') {
                 counterState = 1
             } else {
-                if(state.counterState === state.maxNumber){
+                if (state.counterState === state.maxNumber) {
                     counterState = state.maxNumber
-                }else {
-                    if(state.counterState === state.maxNumber - 1 ){
+                } else {
+                    if (state.counterState === state.maxNumber - 1) {
                         disabledInc = true
                         errorCounter = true
                     }
@@ -109,7 +107,8 @@ const counterReducer = (state: StateType = initialState, action: TotalTypeAC) =>
         }
         case
         "DEC-VALUE" : {
-            {   debugger
+            {
+                debugger
                 let counterState
                 let disabledDec
                 let disabledInc
@@ -118,10 +117,10 @@ const counterReducer = (state: StateType = initialState, action: TotalTypeAC) =>
                 if (typeof state.counterState === 'string') {
                     counterState = 0
                 } else {
-                    if (state.counterState === state.startNumber){
+                    if (state.counterState === state.startNumber) {
                         counterState = state.startNumber
-                    }else {
-                        if(state.counterState === state.startNumber + 1){
+                    } else {
+                        if (state.counterState === state.startNumber + 1) {
                             disabledDec = true
                         }
                         disabledInc = false
@@ -158,15 +157,15 @@ const counterReducer = (state: StateType = initialState, action: TotalTypeAC) =>
 
             saveLocalState(state.maxNumber, state.startNumber)
 
-            return {...state, counterState , disabledInc, disabledDec }
+            return {...state, counterState, disabledInc, disabledDec}
         }
-        case "SETTING-CLICK":{
+        case "SETTING-CLICK": {
             debugger
             let disabledSeetting = false
-            if(state.maxNumber === null && state.startNumber === null){
+            if (state.maxNumber === null && state.startNumber === null) {
                 disabledSeetting = true
             }
-            return {...state, disabledSeetting }
+            return {...state, disabledSeetting}
         }
         default:
             return state
@@ -191,7 +190,6 @@ type SetMaxValueAction = {
     type: 'SET-MAX-VALUE'
     payload: {
         maxNumber: number
-        disabledSeetting: boolean
     }
 }
 
@@ -199,7 +197,6 @@ type SetStartValueAction = {
     type: 'SET-START-VALUE'
     payload: {
         startNumber: number
-        disabledSeetting: boolean
     }
 }
 
