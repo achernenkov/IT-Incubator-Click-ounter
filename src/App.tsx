@@ -7,21 +7,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "./redux/store";
 import {StateType} from "./redux/reducer";
 
-
-
-export function restoreState() {
-    let obj = localStorage.getItem('counter')
-    return obj ? JSON.parse(obj) : {'max': null, 'min': null}
-}
-
-function saveLocalState(maxNumber: number, startNumber: number) {
-    let obj = {
-        'max': maxNumber,
-        'min': startNumber
-    }
-    localStorage.setItem('counter', JSON.stringify(obj));
-}
-
 function App() {
 
 const dispatch = useDispatch()
@@ -68,11 +53,10 @@ const dispatch = useDispatch()
     const fullInc = () => {dispatch({type: "SET-FULL-INC-VALUE"})}
     const fullDec = () => {dispatch({type: "SET-FULL-DEC-VALUE"})}
 
-
     return (
         <BrowserRouter>
             <div className="App">
-                <span className='title'>Click counter V2 </span>
+                <span className='title'>Click counter V3 </span>
                 <Route exact path="/" render={() => <Counter
                     buttonTitle={buttonTitle}
                     state={counterState}

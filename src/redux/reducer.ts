@@ -1,3 +1,18 @@
+export function restoreState() {
+    let obj = localStorage.getItem('counter')
+    return obj ? JSON.parse(obj) : {'max': null, 'min': null}
+}
+
+const saveLocalState = (maxNumber: number, startNumber: number) => {
+    let obj = {
+        'max': maxNumber,
+        'min': startNumber
+    }
+    localStorage.setItem('counter', JSON.stringify(obj));
+}
+
+
+
 export type ButtonTitleType = {
     inc: string
     dec: string
@@ -28,8 +43,8 @@ let initialState: StateType = {
         set: 'Set',
         setting: 'Setting'
     },
-    maxNumber: 0,
-    startNumber: 0,
+    maxNumber: restoreState().max,
+    startNumber: restoreState().min,
     disabledSeetting: true,
     disabledInc: true,
     disabledDec: true,
@@ -37,6 +52,8 @@ let initialState: StateType = {
     errorCounter: false,
     counterState: 'Setting please'
 }
+
+
 
 const counterReducer = (state: StateType = initialState, action: TotalTypeAC) => {
     switch (action.type) {
@@ -138,6 +155,9 @@ const counterReducer = (state: StateType = initialState, action: TotalTypeAC) =>
             let disabledInc = false
             let disabledDec = true
             let counterState = state.startNumber
+
+            saveLocalState(state.maxNumber, state.startNumber)
+
             return {...state, counterState , disabledInc, disabledDec }
         }
         default:
